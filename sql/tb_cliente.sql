@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS tbClientes (
+    _id SERIAL PRIMARY KEY,
+    codcli VARCHAR(100) NOT NULL,
+    nomcli VARCHAR(255)
+);
