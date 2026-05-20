@@ -68,6 +68,9 @@ class Collector:
                 "Boi": "boi"
             })
 
+            df['datacriacao'] = pd.to_datetime(df['datacriacao'], errors='coerce').dt.date
+            df['datemi'] = pd.to_datetime(df['datemi'], errors='coerce').dt.date
+
             return df
 
         except Exception as e:
