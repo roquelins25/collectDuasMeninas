@@ -1,22 +1,29 @@
+import sys
+import os
+from pathlib import Path
+
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
+
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime
 
-from config.conectDB import connect_db
-from src.collector import Collector
-
-import os
 import dotenv
 
-dotenv.load_dotenv()
+dotenv.load_dotenv(PROJECT_ROOT / ".env")
 
-url = os.getenv("LINK_CONNECTION")
+from config.conectDB import connect_db
+from src.collector import Collector
 
 
 # ==========================================
 # FUNÇÃO PRINCIPAL
 # ==========================================
 def executar_etl():
+
+    url = os.getenv("LINK_CONNECTION")
 
     conn = connect_db()
 
@@ -35,14 +42,14 @@ def executar_etl():
     collector.carregar_dados(
         df_tratado,
         "tbfatos",
-        "sql/tb_fatos.sql"
+        str(PROJECT_ROOT / "sql" / "tb_fatos.sql")
     )
 
     # load clientes
     collector.carregar_dados(
         df_clientes,
         "tbclientes",
-        "sql/tb_cliente.sql"
+        str(PROJECT_ROOT / "sql" / "tb_cliente.sql")
     )
 
 
