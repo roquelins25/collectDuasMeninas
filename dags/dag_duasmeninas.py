@@ -60,9 +60,9 @@ with DAG(
 
     dag_id="etl_frigorifico",
 
-    start_date=datetime(2025, 1, 1),
+    start_date=datetime(2026, 5, 20),
 
-    schedule="@daily",
+    schedule="0 */4 * * *",
 
     catchup=False
 
