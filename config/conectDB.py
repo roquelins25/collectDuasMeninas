@@ -16,8 +16,7 @@ def connect_db():
         print("Conexão com o banco de dados estabelecida com sucesso!")
         return connection
     except Exception as e:
-        print(f"Erro ao conectar ao banco de dados: {e}")
-        return None
+        raise RuntimeError(f"Erro ao conectar ao banco de dados: {e}") from e
 
 
 if __name__ == "__main__":
