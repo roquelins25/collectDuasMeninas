@@ -12,7 +12,7 @@ from datetime import datetime
 
 import dotenv
 
-dotenv.load_dotenv(PROJECT_ROOT / ".env")
+dotenv.load_dotenv(PROJECT_ROOT / ".env", override=True)
 
 from config.conectDB import connect_db
 from src.collector import Collector
